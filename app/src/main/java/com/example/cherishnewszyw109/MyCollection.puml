@@ -1,0 +1,35 @@
+@startuml
+actor ZYW109
+title 登录模块
+autonumber
+ZYW109 -> CollectFragment:onCreate()
+note left: 省略Maintivity的加载过程
+CollectFragment -> CollectFragment:onCreateView()
+CollectFragment -> CollectFragment:inflater.inflate(R.layout.fg_replace_qr,false)
+CollectFragment -> CollectFragment:initDb()
+CollectFragment -> NewsDBAdapter: NewsDBAdapter.getInstance(getActivity())
+NewsDBAdapter --> CollectFragment: dbAdapter
+CollectFragment -> CollectFragment: dbAdapter.openDB()
+CollectFragment -> CollectFragment:initView(view)
+note left:初始化控件 判断是横屏还是纵屏
+CollectFragment -> CollectFragment:getData()
+note left: 获取数据库数据
+CollectFragment -> Observable:使用Rxjava查询数据库
+Observable --> CollectFragment:
+CollectFragment -> CollectAdapter:new CollectAdapter(getActivity(),datas,CollectFragment.this)
+note left: 获取成功
+CollectAdapter --> CollectFragment:adapter
+CollectFragment --> CollectFragment:initOnclick()
+note left:初始化点击事件
+CollectFragment --> CollectFragment:onViewClick
+CollectFragment -> NewsDetailActivity:startActivity(NewsDetailActivity)
+note left:用户点击查看新闻
+NewsDetailActivity -> CollectFragment:
+note left:用户删除收藏
+CollectFragment -> CollectFragment:dbAdapter.deleteById(id);
+CollectFragment --> CollectFragment:adapter.delete(position);
+ZYW109 -> CollectFragment:onDestory()
+CollectFragment --> CollectFragment:dbAdapter.close();
+CollectFragment --> ZYW109:
+
+@enduml

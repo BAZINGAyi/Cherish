@@ -1,0 +1,34 @@
+@startuml
+actor ZYW109
+title 新闻推荐模块
+autonumber
+ZYW109 -> RecommendFragment:onCreate()
+note left: 省略Maintivity的加载过程
+RecommendFragment -> RecommendFragment:onCreateView()
+RecommendFragment -> RecommendFragment:inflater.inflate(R.layout.fg_recommend,null)
+RecommendFragment -> RecommendFragment:initView(view)
+note left: 初始化所有控件
+RecommendFragment -> NewsAdapter: new NewsAdapter(getActivity())
+NewsAdapter --> RecommendFragment:adapter
+RecommendFragment -> RecommendFragment:configRecyclerView()
+note left: 判断当前是横屏还是竖屏状态，并设置RecyclerView的刷新事件及在如在没有网络特殊情况下的视图
+RecommendFragment -> RecommendFragment:configNewsadapter()
+note left: 设置下拉刷新和更多加载
+RecommendFragment -> RecommendFragment:getLocalData()
+note left: 获取网络数据
+RecommendFragment -> HelpHttp:new HelpHttp()
+HelpHttp --> RecommendFragment:help
+RecommendFragment -> HelpHttp:new ApiService()
+HelpHttp --> RecommendFragment:apiService
+RecommendFragment -> HelpFormatData:new HelpFormatData()
+HelpFormatData --> RecommendFragment: helpFormatData
+RecommendFragment -> RecommendFragment:  newses = helpFormatData(newsgson);
+RecommendFragment -> RecommendFragment:  adapter.addAll(newses)
+RecommendFragment -> RecommendFragment:  onClick()
+note left: 设置点击事件
+CollectFragment -> NewsDetailActivity:startActivity(NewsDetailActivity)
+note left:用户点击查看新闻
+NewsDetailActivity -> CollectFragment:
+ZYW109 -> RecommendFragment:onDestory()
+RecommendFragment --> ZYW109:
+@enduml

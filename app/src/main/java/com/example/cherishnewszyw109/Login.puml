@@ -1,0 +1,37 @@
+@startuml
+actor ZYW109
+title 登录模块
+autonumber
+ZYW109 -> QrFragment:onCreate()
+note left: 省略Maintivity的加载过程
+QrFragment -> QrFragment:onCreateView()
+QrFragment -> QrFragment:inflater.inflate(R.layout.fg_replace_qr,false)
+QrFragment -> QrFragment:initView(view);
+note left: 初始化控件
+QrFragment -> QrFragment:setCheckName()
+QrFragment -> QrFragment: readSp();
+note left:如果用户记住密码则读取
+QrFragment -> QrFragment:switchFragment();;
+note left:如果用户翻转屏幕并且成功登录则复用LoginFragment
+QrFragment -> LoginFragment:ft.replace(R.id.fg_replace_qr,LoginFragment);
+LoginFragment --> QrFragment:
+QrFragment --> QrFragment:onClick(View v)
+ZYW109 -> QrFragment: requestCheckUsername()
+note left:用户在输入用户名框失去焦点
+QrFragment --> HelpRetrofit:new HelpRetrofit()
+HelpRetrofit --> QrFragment:helpRetrofit()
+QrFragment --> ZYW109:
+ZYW109 --> QrFragment: checkUser();
+note left:如果用户点击登录
+QrFragment --> ZYW109: requestCheckUserLogin()
+note left:用户输入合法
+QrFragment --> QrFragment:saveSp( )
+QrFragment --> QrFragment:switchFragment()
+note left:用户成功登录
+QrFragment -> LoginFragment:ft.replace(R.id.fg_replace_qr,LoginFragment);
+LoginFragment --> QrFragment:
+ZYW109 --> QrFragment:onSaveInstanceState()
+note left: 用户翻转手机
+ZYW109 -> QrFragment:onDestory()
+QrFragment --> ZYW109:
+@enduml

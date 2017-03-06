@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/replace_Newstype"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></FrameLayout>
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:background="#fff">
+        <com.jude.rollviewpager.RollPagerView
+            android:id="@+id/rollPagerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:background="#7700ff00"
+            app:rollviewpager_play_delay="3000"
+            app:layout_heightPercent="80%"
+            app:layout_widthPercent="40%"/>
+        <GridView
+            android:id="@+id/gv_newsType"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:background="#7700ff00"
+            android:numColumns="2"
+            android:text="w:70%,h:20%"
+            app:layout_heightPercent="80%"
+            app:layout_widthPercent="60%"/>
+
+
+
+    </android.support.percent.PercentRelativeLayout>
+
+
+</LinearLayout>
+
+
+
+
+

@@ -1,0 +1,425 @@
+@startuml
+
+Class MainActivity
+Class BaseActivity
+Class GuidActivity
+Class NewsDetailActivity
+Class WelcomeActivity
+class  BaseActivity{
+  protected void onCreate(@Nullable Bundle savedInstanceState)
+}
+class MainActivity {
+    private NavigationView mNavigationView
+    private DrawerLayout mDrawerLayout
+    private ViewPager viewPager
+    private TabLayout tableLayout
+    public static SearchView mSearchView
+    private List<Fragment> mfragments
+    private PagerAdapter madapter
+    private String[] title
+    FloatingActionButton floatingActionButton
+    protected void onCreate(Bundle savedInstanceState)
+    private void initOnclick()
+    private void initViewPager()
+    private void initView()
+    private void doSearchView()
+    private void setMyActionbar()
+    public boolean onCreateOptionsMenu(Menu menu)
+    public boolean onOptionsItemSelected(MenuItem item)
+    public boolean onNavigationItemSelected(MenuItem item)
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+}
+class GuidActivity{
+      private ViewPager vpager_one
+      private ArrayList<View> aList
+      private MyViewPaperAdapter mAdapter
+      private Button button_start
+      private void BindView()
+      private void initData()
+      protected void onCreate(Bundle savedInstanceState)
+}
+
+class WelcomeActivity{
+    private static final int GO_HOME
+    private static final int GO_GUIDE
+    private static final int TIME
+    private static  Boolean isFrist
+    private void init()
+    private void goGuide()
+    private void goHome()
+    private void initDb()
+    protected void onDestroy()
+}
+
+class NewsDetailActivity{
+    private String url
+    private WebView webView
+    private ImageView ivImage
+    private CollapsingToolbarLayout colooapsingtoolbarlayout
+    private Button change_TextSize
+    SeekBar mRadiusSeekBar
+    private TextView news_content
+    private int currentseek
+    FloatingActionButton collectButton
+    NewsDBAdapter dbAdapter
+    private String content
+    private String picUrl
+    private String news_titile
+    private String time
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    private void initOnClick()
+    private void hideTile()
+    private void initData()
+    private void initView()
+    private void doSeekBar()
+    private void doStringText(String content)
+    public boolean onCreateOptionsMenu(Menu menu)
+    public boolean onOptionsItemSelected(MenuItem item)
+    private void getOverflowMenu()
+    private void setMyActionbar()
+    private void initDb()
+    protected void onDestroy()
+    private void querydata()
+}
+class CollectAdapter
+class MyPagerAdapter
+class MyViewPagerAdapter
+class NewsAdapter
+class RollPagerAdapter
+class CollectAdapter{
+        Context context
+        private List<Map> datas
+        public LayoutInflater mInflater
+        public OnViewClickListener onViewClickListener
+        public OnItemClickListener onItemClickListener
+        public CollectAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+        public void onBindViewHolder(final MyViewHolder holder, final int position)
+         public int getItemCount()
+         public void delete(int pos)
+          public String getid(int position)
+          public Map getDetailinfo(int position)
+         public void setOnItemClickListener(OnItemClickListener onItemClickListener)
+       public interface OnItemClickListener
+       public interface OnViewClickListener
+       class MyViewHolder
+
+}
+class MyPagerAdapter{
+    List<Fragment> fragments
+    String[] title
+    public Fragment getItem(int position)
+    public int getCount()
+    public CharSequence getPageTitle(int position)
+    public MyPagerAdapter(FragmentManager fm , List<Fragment> fragments ,  String[] title)
+}
+class MyViewHolder{
+        private TextView mTv_name
+        private ImageView mImg_face
+        private TextView mTv_sign
+        private Button deleteButton
+        public MyViewHolder(View itemView)
+}
+interface OnViewClickListener {
+        void onViewClick(int position, int viewtype);
+    }
+interface OnItemClickListener{
+    void onItemClick(int position);
+}
+
+class MyViewPagerAdapter{
+     private ArrayList<View> viewLists
+     public MyViewPaperAdapter(ArrayList<View> viewLists)
+     public int getCount()
+     public boolean isViewFromObject(View view, Object object)
+     public Object instantiateItem(ViewGroup container, int position)
+     public void destroyItem(ViewGroup container, int position, Object object)
+}
+
+class NewsAdapter{
+  public NewsAdapter(Context context)
+  public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+}
+
+interface ApiService{
+    Observable <LocalNews> getNewsData(@Query("page") int page);
+    Observable <LocalNews> getNewsData(@Query("tid") int type,
+                                       @Query("page") int page);
+    Call <String> login(@Query("username") String username,
+                                       @Query("random") String random);
+    Call<String> ckecklogin(@Query("username") String username,
+                            @Query("pass") String pass);
+    Call <String>checkUsername(@Query("username") String username
+                                );
+    Observable <LocalNews> getSearchData(@Query("title") String title,
+                                       @Query("page") int page);
+}
+
+class LocalNews{
+    private int validPage;
+    private int code;
+    private int pagecount;
+    private List<ResultBean> result;
+}
+ class ResultBean{
+            private String id;
+            private String newsno;
+            private String title;
+            private String content;
+            private String publishtime;
+            private String pic;
+            private String satus;
+            private String hint;
+            private Object cid;
+            private String updatetime;
+            private Object adminname;
+            private String video_path;
+ }
+
+class News{
+    private String ctime;
+    private String title;
+    private String content;
+    private String description;
+    rivate String picUrl;
+    private String url;
+}
+
+class NewsUri{
+     public static final String[] nUri= {"keji/","guonei/","world/","it/","tiyu/","startup/","mobile/","vr/"};
+     public static final String[] nUri_Local= {"军事","政治","运动","财经","娱乐","科技","流行","潮流"};
+     public static final int[] nUri_Tid = {1,2,7,3,4,5,6,8};
+     public static final String BaseUrl = "http://192.168.191.1/";
+     public static final String localImgpic = "cherishnews/Public/Uploads/news/";
+ }
+
+ class NewsViewHolder{
+        public NewsViewHolder(ViewGroup parent)
+        private TextView mTv_name
+        private ImageView mImg_face
+        private TextView mTv_sign
+         public void setData(final News data)
+ }
+
+ class NewsDBAdapter{
+        final static int VERSON = 1
+    	private final static String DBNAME = "collect.db"
+    	private final static String TABLE = "collect"
+    	private final static String ID="id"
+    	private final static String TITLE="title"
+    	private final static String TIME="time"
+    	private final static String CONTENT="content"
+    	private final static String PIC="pic"
+        private Context context
+        private OpenHelper openHelper
+        private SQLiteDatabase database
+        private static NewsDBAdapter dbAdapter
+          	public static NewsDBAdapter getInstance(Context context)
+          	private NewsDBAdapter(Context context)
+          	public void openDB()
+          	public void closeDB()
+          	public long insert(Map  news)
+          	public int queryBytitle(String s)
+          	public long deleteById(String id)
+          	public  List<Map> queryAll()
+          	public List<Map> convertToContactBean(Cursor cursor)
+ }
+
+  class OpenHelper {
+    public OpenHelper(Context context)
+    public void onCreate(SQLiteDatabase db)
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+  }
+
+  class HelpFormatData{
+     public List<News> formatData(LocalNews newsgson)
+  }
+  class HelpHttp{
+      private Retrofit retrofit
+        private ApiService apiManager
+        public HelpHttp()
+         public ApiService newsTypeHttp()
+  }
+
+  class HelpRetrofit{
+    Retrofit retrofit
+    ApiService infoApi
+     public HelpRetrofit(String url)
+     public Call<String> connectHttp(String name, String pass)
+     public Call<String> connectHttpLogin(String name,String random)
+      public Call<String> connectHttpUsername(String name)
+      public String formatReturnData(Response<String> response)
+  }
+
+  class CollectFragment
+  class LoginFragment
+  class NewsTypeFragment
+  class QrFragment
+  class RecommendFragment
+  class SearchFragment
+
+  class CollectFragment{
+        RecyclerView recyclerView;
+        CollectAdapter adapter;
+        List<Map> datas;
+        private static NewsDBAdapter dbAdapter;
+         private void getData()
+          private void initView(View view)
+           public void onDestroy()
+            private void initDb()
+              private void doDelete(final int position)
+            public void onViewClick(final int position, int viewtype)
+          private void initOnclick()
+         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+  }
+
+  class LoginFragment{
+           SharedPreferences saveUserlogin
+            private Button startQr
+            private TextView disResult
+            private String username
+             private void initOnclick()
+              private void doRequestLogin( String result)
+              public void getUsername()
+               private void initView(View view)
+                 public void onActivityResult(int requestCode, int resultCode, Intent data)
+             public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+  }
+
+  class NewsTypeFragment {
+      RollPagerView mRollViewPager
+      private GridView gridView
+      private LayoutInflater inflater
+      private List<String> newsType
+      private ArrayAdapter<String> madapter
+      private static FrameLayout frameLayout
+      private View view;
+      private RollPagerAdapter rollPagerAdapter
+      private static int currentGridpos
+       private void initView(View view)
+       private void setGardView()
+       private void switchFragment(int position)
+        public void onSaveInstanceState(Bundle outState)
+        public static boolean onKeyDown(int keyCode, KeyEvent event)
+       public void onCreate(@Nullable Bundle savedInstanceState)
+        private void setCheckName()
+          private void initView(View view)
+          private void readSp()
+          private void checkUser()
+           public void onClick(View v)
+            public void onSaveInstanceState(Bundle outState)
+
+  }
+
+  class QrFragment{
+   private Button loginButton
+      private EditText nameET
+      private EditText passET
+      private Switch rememberSW
+      SharedPreferences saveUserlogin
+      private FrameLayout switchFragment
+      private View view
+      private LinearLayout fg_qr_login
+      private  int islogin
+       private void saveSp( )
+                 private void switchFragment()
+                   private boolean isPasswordValid(String password)
+                    private boolean isNameValid(String name)
+                      private void requestCheckUserLogin(String name ,String pass)
+                       private void requestCheckUsername(String name)
+              public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState
+       public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+
+  }
+
+    class RecommendFragment{
+            private int page
+            private  int currentPage
+            private  NewsAdapter adapter
+            private EasyRecyclerView recyclerView
+            private LayoutInflater layoutInflater
+            private static String URLNEWS
+            private static int urlType
+            private static  int flag_News
+            private LayoutInflater inflater
+            public void onCreate(@Nullable Bundle savedInstanceState)
+            private void initView(View view)
+            private void getLocalData()
+            private void onClick()
+            private void configNewsadapter()
+            private void configRecyclerView()
+            private void flashView()
+            public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+
+    }
+    class SearchFragment{
+         private EasyRecyclerView search_recyclerView
+            private EditText search_Edit
+            private NewsAdapter newsAdapter
+            private int page
+            private  int currentPage
+            private Button searchButton
+            private void conectData(String search)
+            private void initView(View view)
+            private void requestData(String search)
+            private void initSearch(Bundle savedInstanceState)
+            private void initOnClick()
+            private void configRecyclerView()
+            private void configNewsadapter()
+            private void onClick()
+            public void onSaveInstanceState(Bundle outState)
+            public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    }
+
+    class ZYW109
+
+BaseActivity <|-- MainActivity
+BaseActivity <|-- GuidActivity
+BaseActivity <|-- NewsDetailActivity
+BaseActivity <|-- WelcomeActivity
+MyPagerAdapter<--MainActivity
+CollectFragment<.. MainActivity
+LoginFragment<.. MainActivity
+NewsTypeFragment<.. MainActivity
+QrFragment<.. MainActivity
+RecommendFragment<.. MainActivity
+SearchFragment<.. MainActivity
+NewsDBAdapter<--NewsDetailActivity
+MyViewPaperAdapter<-- GuidActivity
+OnViewClickListener<|--CollectAdapter
+OnItemClickListener<|--CollectAdapter
+MyViewHolder<|--CollectAdapter
+PagerAdapter<|--MyViewPagerAdapter
+NewsViewHolder <.. NewsAdapter
+StaticPagerAdapter<|-- RollPagerAdapter
+LocalNews<..NewsAdapter
+News<..NewsAdapter
+LocalNews<..CollectAdapter
+News<..CollectAdapter
+OpenHelper<|--NewsDBAdapter
+ResultBean <|-- LocalNews
+LocalNews<..HelpFormatData
+News<..HelpFormatData
+CollectAdapter<|--CollectFragment
+NewsDBAdapter<|--CollectFragment
+HelpRetrofit<..LoginFragment
+HelpRetrofit<..LoginFragment
+RollPagerAdapter<|--NewsTypeFragment
+recommendFragment<..LoginFragment
+HelpRetrofit<..QrFragment
+LoginFragment<..QrFragment
+NewsAdapter<|--RecommendFragment
+HelpFormatData<..RecommendFragment
+ApiService<..RecommendFragment
+HelpHttp<..RecommendFragment
+NewsAdapter<|--SearchFragment
+ApiService<..SearchFragment
+HelpHttp<..SearchFragment
+HelpFormatData<..SearchFragment
+NewsUri<..RecommendFragment
+NewsUri<..NewsTypeFragment
+NewsUri<..QrFragment
+NewsUri<..LoginFragment
+NewsUri<..HelpHttp
+NewsUri<..HelpFormatData
+
+@enduml

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news_list_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="2dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+      >
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/person_face"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_centerVertical="true"
+            />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="    今日早晨，河北省承德发生一件针对全国的大事，那就是逗你玩，逗你玩逗你玩逗你玩
+                逗你玩，逗你玩，逗你玩"
+                android:id="@+id/person_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textSize="16sp" />
+
+            <TextView
+                android:gravity="right"
+                android:text="2016年12月2日  17点4点30分"
+                android:id="@+id/person_sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

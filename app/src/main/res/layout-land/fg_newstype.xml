@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/replace_Newstype"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></FrameLayout>
+
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/newstype_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff">
+
+                <com.jude.rollviewpager.RollPagerView
+                    android:id="@+id/rollPagerView"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_alignBottom="@+id/gv_newsType"
+                    android:layout_alignParentLeft="true"
+                    app:layout_widthPercent="40%"
+                    app:rollviewpager_play_delay="3000" />
+
+                <com.example.cherishnewszyw109.adapter.MyGridView
+                    android:id="@+id/gv_newsType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:numColumns="2"
+                    android:padding="4dp"
+                    android:text="w:70%,h:20%"
+                    android:verticalSpacing="8dp"
+                    app:layout_widthPercent="60%" />
+
+
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#fff"-->
+    <!--&gt;-->
+
+        <!--<FrameLayout-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/replace_Newstype"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--&gt;</FrameLayout>-->
+    <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<LinearLayout-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<com.jude.rollviewpager.RollPagerView-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:id="@+id/rollPagerView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="180dp"-->
+                <!--app:rollviewpager_play_delay="3000">-->
+
+            <!--</com.jude.rollviewpager.RollPagerView>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</android.support.v4.widget.NestedScrollView>-->
+
+
+
+
+            <!--<GridView-->
+                <!--android:id="@+id/gv_newsType"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="2"-->
+                <!--android:horizontalSpacing="8dp"-->
+                <!--android:numColumns="2"-->
+                <!--android:padding="4dp"-->
+                <!--android:verticalSpacing="8dp"></GridView>-->
+        <!--</LinearLayout>-->
+
+
+
+
+
+
+

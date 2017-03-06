@@ -1,0 +1,31 @@
+@startuml
+actor ZYW109
+title 新闻详细内容页
+autonumber
+ZYW109 -> DetailActivity:onCreate()
+DetailActivity -> DetailActivity:getOverflowMenu();
+note left: 重写菜单
+DetailActivity -> DetailActivity: setContentView(R.layout.textviewdisplay);
+DetailActivity -> DetailActivity: initDb();
+note left: 初始化数据库
+DetailActivity -> NewsDBAdapter: NewsDBAdapter.getInstance(getActivity())
+NewsDBAdapter --> DetailActivity: dbAdapter
+DetailActivity -> DetailActivity: dbAdapter.openDB()
+DetailActivity -> DetailActivity:  setMyActionbar()
+note left: 设置ToolsBar
+DetailActivity -> DetailActivity:hideTile();
+DetailActivity -> DetailActivity:initView()
+DetailActivity -> DetailActivity:initData()
+note left: 获取数据
+DetailActivity -> DetailActivity:initOnClick()
+note left: 设置点击事件
+DetailActivity -> DetailActivity:querydata()
+note left: 如果用户点击收藏，先查询是否已经收藏过了
+DetailActivity -> DetailActivity:dbAdapter.insert(map)
+note left: 没有收藏过插入数据库
+DetailActivity -> DetailActivity: doSeekBar()
+note left: 用户调整字体
+ZYW109 -> DetailActivity:onDestory()
+DetailActivity --> DetailActivity:dbAdapter.close();
+DetailActivity --> ZYW109:
+@enduml

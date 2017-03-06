@@ -1,0 +1,42 @@
+@startuml
+actor ZYW109
+title 搜索模块
+autonumber
+
+ZYW109 -> SearchFragment:onCreate()
+note left: 省略Maintivity的加载过程
+SearchFragment -> SearchFragment:onCreateView()
+SearchFragment -> SearchFragment:inflater.inflate(R.layout.fg_search,false)
+SearchFragment -> SearchFragment:initView(view)
+note left: 初始化所有控件
+SearchFragment -> NewsAdapter: new NewsAdapter(getActivity())
+NewsAdapter --> SearchFragment: newsAdapter
+SearchFragment -> SearchFragment:initOnClick()
+note left: 设置用户点击后的效果
+SearchFragment -> SearchFragment:configRecyclerView()
+note left: 根据横纵屏的状态加载设置不同的RecyclerViewD的布局
+SearchFragment -> SearchFragment:configNewsadapter()
+note left: 设置newsAdapter的加载状态和更多加载
+SearchFragment -> SearchFragment: initSearch(savedInstanceState)
+note left: 当读取到搜索栏或者搜索框中有信息的自动进行搜索，保证屏幕切换时的状态
+SearchFragment -> SearchFragment: requestData(savedInstanceState)
+SearchFragment -> HelpHttp: new HelpHttp()
+HelpHttp --> SearchFragment:help
+SearchFragment -> ApiService: apiService
+HelpHttp --> SearchFragment: apiService
+SearchFragment -> HelpFormatData: initSearch(savedInstanceState)
+HelpHttp --> SearchFragment: helpFormatData
+SearchFragment --> SearchFragment: newsAdapter.addAll(newses)
+SearchFragment --> SearchFragment: onClick()
+ZYW109 --> SearchFragment:onSaveInstanceState()
+SearchFragment -> NewsDetailActivity:startActivity(NewsDetailActivity)
+note left:用户点击查看新闻
+NewsDetailActivity -> SearchFragment:
+note left: 用户翻转手机
+ZYW109 -> SearchFragment:onDestory()
+SearchFragment --> ZYW109:
+
+
+
+
+@enduml

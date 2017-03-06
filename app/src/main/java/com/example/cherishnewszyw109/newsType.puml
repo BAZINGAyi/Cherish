@@ -1,0 +1,27 @@
+@startuml
+actor ZYW109
+title 新闻专题模块
+autonumber
+
+ZYW109 -> NewsTypeFragment:onCreate()
+note left: 省略Maintivity的加载过程
+NewsTypeFragment -> NewsTypeFragment:onCreateView()
+NewsTypeFragment -> NewsTypeFragment:inflater.inflate(R.layout.fg_newstype,null)
+NewsTypeFragment -> NewsTypeFragment:initView(view)
+note left: 初始化所有控件
+NewsTypeFragment -> NewsTypeFragment:setGardView(view)
+note left: 设置GridView的布局及点击事件
+ZYW109 -> NewsTypeFragment:onclick()
+note left: 如果用户点击专题名称则替换当前的fragment的布局
+NewsTypeFragment --> ZYW109:
+NewsTypeFragment -> NewsTypeFragment: if (savedInstanceState!=null)switchFragment (s)
+note left: 判断屏幕是否发生转换
+NewsTypeFragment -> RecommendFragment:ft.replace(R.id.replace_Newstype,recommendFragment);
+RecommendFragment --> NewsTypeFragment:
+NewsTypeFragment --> NewsTypeFragment:onKeyDown
+note left: 重写回退键的方法
+ZYW109-->NewsTypeFragment:onSaveInstanceState()
+note left: 如果发生屏幕翻转,重新加载Fragment
+ZYW109 -> NewsTypeFragment:onDestory()
+NewsTypeFragment --> ZYW109:
+@enduml

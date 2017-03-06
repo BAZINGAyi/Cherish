@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:layout_height="match_parent">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/search_Edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search News"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            >
+        </EditText>
+
+    </android.support.design.widget.TextInputLayout>
+    <EditText
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <requestFocus/>
+    </EditText>
+    <Button
+        android:id="@+id/search_button"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:text="Search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/search_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.jude.easyrecyclerview.EasyRecyclerView>
+
+
+</LinearLayout>

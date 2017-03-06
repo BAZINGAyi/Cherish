@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:descendantFocusability="blocksDescendants"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/replace_Newstype"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></FrameLayout>
+
+        <com.jude.rollviewpager.RollPagerView
+            android:id="@+id/rollPagerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:rollviewpager_play_delay="3000">
+
+        </com.jude.rollviewpager.RollPagerView>
+
+        <com.example.cherishnewszyw109.adapter.MyGridView
+            android:id="@+id/gv_newsType"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="2"
+            android:horizontalSpacing="8dp"
+            android:numColumns="2"
+            android:padding="4dp"
+            android:verticalSpacing="8dp"></com.example.cherishnewszyw109.adapter.MyGridView>
+</LinearLayout>
